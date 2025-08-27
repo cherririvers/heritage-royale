@@ -302,53 +302,6 @@ export const HeritageSection: React.FC = () => {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {feature.description}
                   </p>
-                        </div>
-                      </div>
-                    </Card>
-                ))}
-              </div>
-            </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Architecture Highlights */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <Award className="w-8 h-8 text-royal-gold" />
-              <h3 className="text-3xl font-serif font-bold text-royal-maroon">Architectural Marvels</h3>
-            </div>
-            <p className="text-lg text-gray-600">Discover the intricate details of our heritage architecture</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {architecturalFeatures.map((feature, index) => (
-              <Card
-                key={feature.title}
-                className="group cursor-pointer overflow-hidden animate-fade-in"
-                padding="none"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-royal-gradient/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Camera className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-serif font-bold text-lg text-royal-maroon mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
                 </div>
               </Card>
             ))}
