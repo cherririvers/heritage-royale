@@ -164,57 +164,150 @@ export const HeritageSection: React.FC = () => {
             
             <div className="space-y-12">
               {timelineEvents.map((event, index) => (
-                <div
-                  key={event.year}
-                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} animate-fade-in`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div key={event.year} className="animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                  {/* Mobile Layout - Full Width */}
+                  <div className="lg:hidden">
                     <Card 
                       className={`cursor-pointer transition-all duration-300 ${event.highlight ? 'border-royal-gold bg-royal-gold/5' : ''}`}
                       onClick={() => setSelectedEvent(event)}
                       padding="lg"
                     >
-                      <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-6">
+                      <div className="space-y-4">
+                        <div className="flex items-center space-x-4 mb-4">
+                          <div className={`w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center ${
+                            event.highlight ? 'bg-royal-gold' : 'bg-royal-maroon'
+                          }`}>
+                            <span className="text-white font-bold text-sm">{event.year.slice(-2)}</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <span className="text-2xl font-bold text-royal-gold">{event.year}</span>
+                              {event.highlight && <Star className="w-5 h-5 text-royal-gold" />}
+                            </div>
+                            <h4 className="font-serif font-bold text-xl text-royal-maroon">
+                              {event.title}
+                            </h4>
+                          </div>
+                        </div>
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="w-full lg:w-24 h-32 lg:h-24 object-cover rounded-lg flex-shrink-0"
+                          className="w-full h-48 object-cover rounded-lg"
                         />
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <span className="text-3xl font-bold text-royal-gold">{event.year}</span>
-                            {event.highlight && <Star className="w-5 h-5 text-royal-gold" />}
-                          </div>
-                          <h4 className="font-serif font-bold text-xl text-royal-maroon mb-3">
-                            {event.title}
-                          </h4>
-                          <p className="text-gray-700 text-base line-clamp-3 leading-relaxed mb-4">
-                            {event.description}
-                          </p>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-royal-gold hover:bg-royal-gold/10"
-                            icon={ChevronRight}
-                            iconPosition="right"
-                          >
-                            Learn More
-                          </Button>
-                        </div>
+                        <p className="text-gray-700 text-base leading-relaxed mb-4">
+                          {event.description}
+                        </p>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-royal-gold hover:bg-royal-gold/10"
+                          icon={ChevronRight}
+                          iconPosition="right"
+                        >
+                          Learn More
+                        </Button>
                       </div>
                     </Card>
                   </div>
-                  
-                  {/* Timeline Node */}
-                  <div className="relative z-10">
-                    <div className={`w-8 h-8 rounded-full border-4 border-white shadow-lg ${
-                      event.highlight ? 'bg-royal-gold' : 'bg-royal-maroon'
-                    }`}></div>
+
+                  {/* Desktop Layout - Split Layout */}
+                  <div className="hidden lg:flex items-center">
+                    <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                      <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                        <Card 
+                          className={`cursor-pointer transition-all duration-300 ${event.highlight ? 'border-royal-gold bg-royal-gold/5' : ''}`}
+                          onClick={() => setSelectedEvent(event)}
+                          padding="lg"
+                        >
+                          <div className="flex flex-row items-center space-x-6">
+                            <img
+                              src={event.image}
+                              alt={event.title}
+                              className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2 mb-2">
+                                <span className="text-3xl font-bold text-royal-gold">{event.year}</span>
+                                {event.highlight && <Star className="w-5 h-5 text-royal-gold" />}
+                              </div>
+                              <h4 className="font-serif font-bold text-xl text-royal-maroon mb-3">
+                                {event.title}
+                              </h4>
+                              <p className="text-gray-700 text-base line-clamp-3 leading-relaxed mb-4">
+                                {event.description}
+                              </p>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="text-royal-gold hover:bg-royal-gold/10"
+                                icon={ChevronRight}
+                                iconPosition="right"
+                              >
+                                Learn More
+                              </Button>
+                            </div>
+                          </div>
+                        </Card>
+                      </div>
+                      
+                      {/* Timeline Node */}
+                      <div className="relative z-10">
+                        <div className={`w-8 h-8 rounded-full border-4 border-white shadow-lg ${
+                          event.highlight ? 'bg-royal-gold' : 'bg-royal-maroon'
+                        }`}></div>
+                      </div>
+                      
+                      <div className="w-5/12"></div>
+                    </div>
                   </div>
-                  
-                  <div className="w-5/12"></div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Architecture Highlights */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Award className="w-8 h-8 text-royal-gold" />
+              <h3 className="text-3xl font-serif font-bold text-royal-maroon">Architectural Marvels</h3>
+            </div>
+            <p className="text-lg text-gray-600">Discover the intricate details of our heritage architecture</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {architecturalFeatures.map((feature, index) => (
+              <Card
+                key={feature.title}
+                className="group cursor-pointer overflow-hidden animate-fade-in"
+                padding="none"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-royal-gradient/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Camera className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-serif font-bold text-lg text-royal-maroon mb-2">
+                    {feature.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                        </div>
+                      </div>
+                    </Card>
+                ))}
+              </div>
+            </div>
               ))}
             </div>
           </div>
