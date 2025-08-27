@@ -160,7 +160,7 @@ export const HeritageSection: React.FC = () => {
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-royal-gradient rounded-full shadow-lg"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-royal-gradient rounded-full shadow-lg -z-10"></div>
             
             <div className="space-y-12">
               {timelineEvents.map((event, index) => (
@@ -251,7 +251,7 @@ export const HeritageSection: React.FC = () => {
                       </div>
                       
                       {/* Timeline Node */}
-                      <div className="relative z-10">
+                      <div className="relative z-20">
                         <div className={`w-8 h-8 rounded-full border-4 border-white shadow-lg ${
                           event.highlight ? 'bg-royal-gold' : 'bg-royal-maroon'
                         }`}></div>
